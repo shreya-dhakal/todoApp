@@ -12,4 +12,5 @@ const addTask = () => {
         taskList.appendChild(taskItem);
         taskInput.value = '';
     }
+    console.log("this is day 2")
 }
