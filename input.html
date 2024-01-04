@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table with CRUD Operations</title>
+</head>
+<body>
+
+<h2>Table with CRUD Operations</h2>
+
+<input type="text" id="nameInput" placeholder="Enter Name">
+<button onclick="addRecord()">Add Record</button>
+<button onclick="editRecord()">Edit Record</button>
+<button onclick="deleteRecord()">Delete Record</button>
+
+<table id="myTable" border="1">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Action</th>
+    </tr>
+</table>
+
+<script>
+    var selectedRow = null;
+
+    function addRecord() {
+        var nameInput = document.getElementById("nameInput").value;
+        if (nameInput.trim() !== "") {
+            var table = document.getElementById("myTable");
+            var newRow = table.insertRow(table.rows.length);
+
+            var cell1 = newRow.insertCell(0);
+            var cell2 = newRow.insertCell(1);
+            var cell3 = newRow.insertCell(2);
+
+            cell1.innerHTML = table.rows.length - 1; // ID
+            cell2.innerHTML = nameInput; // Name
+            cell3.innerHTML = '<button onclick="editRow(this)">Edit</button> ' +
+                              '<button onclick="deleteRow(this)">Delete</button>'; // Edit and Delete buttons
+
+            resetForm();
+        } else {
+            alert("Please enter a name.");
+        }
+    }
+
+    function editRecord() {
+        if (selectedRow) {
+            var nameInput = document.getElementById("nameInput").value;
+            if (nameInput.trim() !== "") {
+                selectedRow.cells[1].innerHTML = nameInput;
+                resetForm();
+            } else {
+                alert("Please enter a name.");
+            }
+        } else {
+            alert("Please select a row to edit.");
+        }
+    }
+
+    function deleteRecord() {
+        if (selectedRow) {
+            document.getElementById("myTable").deleteRow(selectedRow.rowIndex);
+            resetForm();
+        } else {
+            alert("Please select a row to delete.");
+        }
+    }
+
+    function editRow(btn) {
+        var row = btn.parentNode.parentNode;
+        selectedRow = row;
+        document.getElementById("nameInput").value = row.cells[1].innerHTML;
+    }
+
+    function deleteRow(btn) {
+        var row = btn.parentNode.parentNode;
+        document.getElementById("myTable").deleteRow(row.rowIndex);
+        resetForm();
+    }
+
+    function resetForm() {
+        document.getElementById("nameInput").value = "";
+        selectedRow = null;
+    }
+</script>
+
+</body>
+</html>

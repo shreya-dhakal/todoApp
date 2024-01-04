@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html= lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>CRUD Operations </title>
+        <style>
+            body {
+      font-family: Arial, sans-serif;
+    }
+
+  #to do-list{
+    list-style-type:none;
+    padding:0;
+  }
+ .todo-item {
+        
+ }
+ input[type="text"] {
+      padding: 5px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Todo List</h1>
+
+  <input type="text" id="newTodo" placeholder="New Todo ">
+  <button id="addTodo">Add</button>
+
+  <ul id="todo-list"></ul>
+  <script>
+   
+   addTodoButton.addEventListener('click', addTodo);
+    function addTodo() {
+      const todoText = newTodoInput.value;
+      if (todoText.trim() !== '') {
+        const listItem = document.createElement('li');
+        listItem.className = 'todo-item';
+
+        const todoLabel = document.createElement('span');
+        todoLabel.textContent = todoText;
+
+
+
+        todoList.appendChild(listItem);
+
+        newTodoInput.value = ''; 
+      } 
+    }
+
+    
+    function editTodoItem(item, label) {
+
+    }
+      const newText = prompt('Edit Todo:', label.textContent);
+      if (newText !== null) {
+        label.textContent = newText;
+      }
+    
+  </script>
+
+</body>
+</html>

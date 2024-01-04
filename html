@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do App</title>
+    <style>
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin: 8px 0;
+        }
+
+        input[type="text"] {
+            width: 200px;
+        }
+
+        button {
+            margin-left: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>To-Do App</h1>
+    <input type="text" id="taskInput" placeholder="New task">
+    <button onclick="addTask()">Add</button>
+
+    <h2>Tasks</h2>
+    <ul id="taskList"></ul>
+
+    <script>
+        function addTask() {
+            // Get the input value
+            var taskInput = document.getElementById("taskInput");
+            var taskText = taskInput.value;
+
+            if (taskText.trim() === "") {
+                alert("Please enter a task.");
+                return;
+            }
+
+            // Create a new list item
+            var listItem = document.createElement("li");
+            listItem.textContent = taskText;
+
+            // Create a delete button for each task
+            var deleteButton = document.createElement("button");
+            deleteButton.textContent = "Delete";
+            deleteButton.onclick = function() {
+                // Remove the task when the delete button is clicked
+                listItem.remove();
+            };
+
+            // Append the delete button to the list item
+            listItem.appendChild(deleteButton);
+
+            // Append the list item to the task list
+            document.getElementById("taskList").appendChild(listItem);
+
+            // Clear the input field
+            taskInput.value = "";
+        }
+    </script>
+</body>
+</html>
